@@ -1,0 +1,26 @@
+{
+  "base": "simonlast.org",
+  "startPort": 8000,
+  "sites": [
+    {
+      "name": "waterfall",
+      "dir": "/Users/simonlast/Dropbox/Docs/Projects/waterfall",
+      "start": "server/server.js"
+    },
+    {
+      "name": "",
+      "dir": "/Users/simonlast/Dropbox/Docs/Projects/simonLast",
+      "start": "server/server.js"
+    },
+    {
+      "name": "peerpuzzle",
+      "dir": "/Users/simonlast/Dropbox/Docs/Projects/maze",
+      "start": "server/server.js"
+    },
+    {
+      "name": "playcreator",
+      "dir": "/Users/simonlast/Dropbox/Docs/Projects/playcreator",
+      "start": "server/server.js"
+    }
+  ]
+}

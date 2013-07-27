@@ -1,0 +1,19 @@
+{
+  "name": "nodecloud",
+  "version": "0.0.0",
+  "description": "ERROR: No README.md file found!",
+  "main": "server.js",
+  "dependencies": {
+    "forever-monitor": "~1.2.2",
+    "http-proxy": "~0.10.3",
+    "underscore": "~1.5.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": "",
+  "author": "Simon Last",
+  "license": "MIT"
+}
