@@ -1,6 +1,6 @@
 {
-  "base": "simonlast.org",
-  "startPort": 8000,
+  "base": "simons-macbook-air.local",
+  "startPort": 9000,
   "sites": [
     {
       "name": "waterfall",
@@ -10,7 +10,7 @@
     {
       "name": "",
       "dir": "/Users/simonlast/Dropbox/Docs/Projects/simonLast",
-      "start": "server/server.js"
+      "start": "tools/server.js"
     },
     {
       "name": "peerpuzzle",

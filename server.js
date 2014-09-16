@@ -1,10 +1,13 @@
-var fs  = require('fs'),
-path    = require('path'),
-_       = require('underscore'),
-httpProxy = require('http-proxy'),
-spawn = require('child_process').spawn;
+var fs        = require('fs');
+var path      = require('path');
+var _         = require('underscore');
+var httpProxy = require('http-proxy');
+var spawn     = require('child_process').spawn;
+var http      = require("http");
+
 
 var startPort, base;
+
 
 var startApp = function(name, dir, start, port){
   process.chdir(dir);
@@ -29,21 +32,34 @@ var setupProxy = function(config){
   });
 
   var proxyConfig = {
-    hostnameOnly: true,
-    router: router
+    ws: true
   };
 
-  var proxyServer = httpProxy.createServer(proxyConfig);
-  proxyServer.listen(80);
+  var proxyServer = httpProxy.createProxyServer();
+
+  http.createServer(function(req, res) {
+    var proxyTo = router[req.headers.host];
+    console.log("request: ", req.headers.host);
+    console.log("proxyTo: ", proxyTo);
+
+    if(proxyTo) {
+      proxyServer.web(req, res, {
+        target: proxyTo
+      });
+    } else {
+      res.send(404);
+    }
+
+  }).listen(80);
 };
 
 var setup = function(){
-  var json = fs.readFileSync(path.join(__dirname, 'config.json'), 'utf8');
+  var json   = fs.readFileSync(path.join(__dirname, 'config.json'), 'utf8');
   var config = JSON.parse(json);
+  var sites  = config.sites;
 
-  sites = config.sites;
-  base = config.base;
-  startPort = config.startPort;
+  base       = config.base;
+  startPort  = config.startPort;
 
   setupProxy(sites);
   _.each(sites, setupApp);
